@@ -1,0 +1,14 @@
+linux information gathering
+
+kalo misal dapet akses ke ftp, kita bisa langsung ambil private key ssh di .ssh/id_rsa atau kita bisa ngeliat liat .bash_history dulu. kalo b2r utamakan recon sama scanning secara bersamaan dulu baru masuk ke langkah exploit. dengan lebih banyak info maka lebih gampang pula kita exploitnya.
+
+scanning
+nmap ip -sC -sV -p-
+
+directory scanning
+gobuster dir -w /usr/share/wordlist/<wordlist location> -u <url>
+
+fuzzing buat lfi contoh
+ffuf -w /usr/share/wordlist/seclist/Fuzzing/LFI/LFI-Jhaddix.txt:FUZZ -u http://83.136.249.223:49112/contact.php?region=FUZZ -fs <filter length>
+
+setelah semua scan sama recon, wajib bgt diliat isinya apa buat information gathering. jangan langsung exploit black box, tapi diliat dulu semua informasi yang kita punya buat lebih gampang
